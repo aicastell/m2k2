@@ -1,0 +1,101 @@
+#! /usr/bin/env python
+##############################################################################
+#
+# m2k2 1.4.2: an interpreter for m2k2 language
+# Copyright (C) 2015 Angel Ivan Castell Rovira
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation; either version 2
+#  of the License, or (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+#  Any questions regarding this software should be directed to:
+#
+#   Angel Ivan Castell Rovira <al004140@gmail.com>
+#
+##############################################################################
+# Programa principal: m2k2
+#
+# Version 1.4.2:
+#
+# La rama 0.0.x trata con analizador lexico
+# La rama 0.y.x trata con el analizador sintactico
+# La rama z.y.x trata con el analizador semantico
+# La version 1.4.2 es la primera que ha pasado correctamente todas las
+# pruebas publicas.
+##############################################################################
+
+from sys        import argv,        stdin, stdout, stderr, exit, platform
+from lexico     import LexAnalyser, LexError
+from sintactico import SynAnalyser, SynError
+from semantico  import              SemError, SymbolTable
+
+# def main():
+#
+
+# se muestra al usuario interactivo un mensaje de bienvenida
+if stdin.isatty():
+  stdout.write( "Micro2K2 1.4.2 (Mar 5 2002, 15:17:54) on " + platform + "\n" )
+  stdout.write( "Universitat Jaume I, 2001-2002. Castellon, Spain\n" )
+
+# se procesa la entrada estandar linea a linea
+sentenceNr=0
+
+while 1:
+  try:
+
+    if stdin.isatty():
+      stdout.write(">>> ")
+    sentence = stdin.readline()
+    if not sentence:
+      break
+    # si sentence != "", comienza su procesamiento
+    sentenceNr = sentenceNr + 1
+    # Se construye el analizador lexico para esta sentencia
+    LexAna = LexAnalyser("stdin", sentence, sentenceNr)
+    # Se construye el analizador sintactico para esta sentencia
+    # a partir del analizador lexico recien creado
+    SynAna = SynAnalyser(LexAna)
+    # Se parsea la linea actual y se devuelve la raiz del AST
+    AST = SynAna.parse_Linea()
+    # Se realizan las comprobaciones semanticas sobre el AST
+    AST.check()
+    # Se realiza la interpretacion sobre el AST
+    AST.interpret()
+
+  except LexError, msg:
+    # durante el parseo de la sentencia, el sintactico pide
+    # un token y el lexico kanta.
+    stderr.write( str(msg) )
+  except SynError, msg:
+    # durante el parseo de la sentencia, falla el analisis
+    # sintactico de la gramatica
+    stderr.write( str(msg) )
+  except SemError, msg:
+    # durante el parseo de la sentencia, se detecta algun
+    # error de tipo semantico
+    stderr.write( str(msg) )
+  except OverflowError:
+    # error del tipo: 10000000*100000000
+    stderr.write( "Execution Error: overflow error\n\n" )
+  except ZeroDivisionError:
+    # error del tipo 1/0
+    stderr.write( "Execution Error: zero division error\n\n" )
+  except ValueError:
+    # error del tipo atoi(99999999999999999999999999999999999)
+    stderr.write( "Execution Error: value error\n\n" )
+  except KeyboardInterrupt:
+    stderr.write( "Keyboard Interrupt\n" )
+    stdin.close()
+    exit(-1)
+# main
+#
