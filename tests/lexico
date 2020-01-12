@@ -1,0 +1,29 @@
+enter a, en
+EnTeR b
+Enter entera
+real r
+enter R
+enter a_1
+enter _a1			@ No se admiten _ al principio del identificador
+#ab1				@ 2737
+01				@ 1
+5				@ 5
+55				@ 55
+1.				@ Punto en mala posición
+2.1				@ 2.1
+3.12				@ 3.12
+5e1				@ Real mal escrito
+5.1e				@ Identificador tras real
+7.1e+1				@ 71.0
+1+2				@ 3
+2++1				@ 3
+2-3				@ -1
+2--3				@ 5
+3&4				@ 1
+(--3+2)                         @ 5
+6<=7				@ 1
+(1+(+)(a,1..5,a))		@ 16
+(1+(&)(a,1..5,a))		@ 2
+(1+(=)(a,1..5,a))		@ No hay "igualatorio"
+(+ )(a,1..3,a)			@ Identificador de operatorio mal escrito
+a				@ 5

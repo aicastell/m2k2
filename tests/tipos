@@ -1,0 +1,21 @@
+enter a
+enter b,a			@ Variable a ya declarada
+b				@ Variable b no declarada
+enter b				@ Correcta
+(+)(a,1..5,(*)(a,1..4,a))	@ No se puede tener como variable muda un identificador que ya lo es (aquí a)
+real r, a			@ Variable a ya declarada
+r				@ Variable r no declarada
+real r
+r<-1
+r<- r/2
+r				@ 0.5
+a<- r				@ Tipo de la parte derecha menos general que el de la izquierda
+r<- a				@ Debe estar documentado qué sucede aquí
+a<- 2
+r<- a
+r				@ 2.0
+(*)(r,1..4,r)			@ La variable muda (r) no puede ser real
+(*)(a,1..4,r)			@ 16.0
+a<-(*)(a,1..4,r)		@ Tipo de la parte derecha menos general que el de la izquierda
+enter i
+(+)(i,1..(+)(i,1..4,i),i)	@ 55

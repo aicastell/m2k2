@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+from redirige import RedirigeError, RedirigeEntrada
+import sys, os
+
+sys.stderr=RedirigeError()
+sys.stdin=RedirigeEntrada(sys.stdin)
+
+exec open("m2k2")
+

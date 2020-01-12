@@ -1,0 +1,40 @@
+Este conjunto de pruebas contiene cuatro ficheros de pruebas y dos
+ficheros auxiliares. Los ficheros de pruebas son:
++ lexico: contiene líneas para probar el nivel léxico.
++ sintactico: contiene líneas para probar el nivel sintáctico.
++ tipos: contiene líneas para probar el sistema de tipos y
+  algunas otras comprobaciones semánticas.
++ resultados: contiene líneas para probar la generación de
+resultados.
+
+Para facilitar la comprobación, se incluye también el programa python
+prueba_m2k2 y el módulo auxiliar redirige.py. El programa se ejecuta
+con la sintaxis
+   prueba_m2k2 < <fprueba>
+
+, donde <fprueba> es un fichero de prueba en el que las líneas tienen
+escritas expresiones, declaraciones o asignaciones en m2k2 y el
+resultado esperado, separado por una arroba (@).  Los ficheros de
+prueba proporcionados tienen este formato.  Por pantalla se obtiene el
+resultado de ejecutar el programa m2k2 junto con la entrada y el
+resultado esperado en cada línea.
+
+Observaciones:
++ Las pruebas no son completas. Se espera que tú seas capaz de
+  generalizar a partir de ellas hasta estar seguro del buen
+  funcionamiento de tu programa.
++ En diversos sitios se pide que se documente lo que ocurre. Esa
+  documentación debe ser general: no basta con decir "si la línea es
+  1 & 1/0 hay un error de ejecución", se espera algo similar a "la
+  evaluación de los operadores lógicos no se hace por circuito corto".
++ Los mensajes de error que se muestran son orientativos, los que de
+  tu programa deben indicar, al menos, la línea de error, el tipo de
+  error (léxico, sintáctico,...) , el componente que lo provocó y el
+  mensaje de error. Acuérdate también de que el mensaje de error debe
+  aparecer por la salida de error estándar. (En prueba_m2k2 esto se ve
+  porque las líneas correspondientes aparecen precedidas por asteriscos).
++ Es posible que en alguna línea nos hayamos equivocado. Utiliza el
+  foro o las tutorías lo antes posible para evitar pérdidas de tiempo
+  innecesarias.
+
+

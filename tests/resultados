@@ -1,0 +1,21 @@
+enter a, b
+a<- 1
+a<- b				@ Debe estar documentado qué sucede aquí
+a				@ Debe estar documentado qué sucede aquí
+-1|1				@ 1
+1+2*3				@ 7
+1+2&3				@ 2
+1|2&3				@ 1
+(1+2)*3				@ 9
+(1+2)&3				@ 1
+(1|2)&3				@ 1
+enter i,j
+(+)(i,1..5,(*)(j,1..i,j))	@ 153
+i				@ 5
+j				@ 5
+1/0				@ División por cero
+1|1/0				@ 1 o división por cero (debe documentarse)
+(+)(i,1..5,1/(2-i))		@ División por cero
+i				@ Debe estar documentado qué sucede aquí
+(+)(i,1..-1,i)			@ Debe estar documentado qué sucede aquí
+i				@ Debe estar documentado qué sucede aquí
